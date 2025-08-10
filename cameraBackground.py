@@ -76,8 +76,8 @@ def draw_landmarks_on_image(image, face_detection_result, hand_detection_result)
     return image
 
 # create facelandmarker and handlandmarker with gpu support
-face_model_path = os.path.join('models', 'face_landmarker.task')
-hand_model_path = os.path.join('models', 'hand_landmarker.task')
+face_model_path = os.path.join('face_landmarker.task')
+hand_model_path = os.path.join('hand_landmarker.task')
 
 base_options = python.BaseOptions(model_asset_path=face_model_path, delegate=python.BaseOptions.Delegate.CPU)
 face_options = vision.FaceLandmarkerOptions(base_options=base_options,

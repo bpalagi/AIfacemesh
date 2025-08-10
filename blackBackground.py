@@ -78,8 +78,8 @@ def draw_landmarks_on_image(image, face_detection_result, hand_detection_result)
     return annotated_image
 
 # create facelandmarker and handlandmarker with gpu support
-face_model_path = os.path.join('models', 'face_landmarker.task')
-hand_model_path = os.path.join('models', 'hand_landmarker.task')
+face_model_path = os.path.join('face_landmarker.task')
+hand_model_path = os.path.join('hand_landmarker.task')
 
 base_options = python.BaseOptions(model_asset_path=face_model_path, delegate=python.BaseOptions.Delegate.CPU)
 face_options = vision.FaceLandmarkerOptions(base_options=base_options,
@@ -93,12 +93,13 @@ hand_options = vision.HandLandmarkerOptions(base_options=base_options,
                                             num_hands=2)
 hand_detector = vision.HandLandmarker.create_from_options(hand_options)
 
-# initialize webcam with lower resolution
+
+# initialize webcam with higherr esolution
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 800)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 600)             # increase resolution 
 cap.set(cv2.CAP_PROP_FPS, 60)
-
+cv2.resizeWindow('Face Mesh and Hands', 1024, 768)  # change size?
 # target display size
 display_width, display_height = 800, 600
 
@@ -106,7 +107,6 @@ from collections import deque
 
 jaw_open_values = deque(maxlen=40)
 
-cv2.resizeWindow('Face Mesh and Hands', 1024, 768)  # or whatever size you want
 while True:
     ret, frame = cap.read()
     frame = cv2.flip(frame, 1)
