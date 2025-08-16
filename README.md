@@ -5,7 +5,8 @@ Implementation of Google's mediapipe models.
 https://ai.google.dev/edge/mediapipe/solutions/guide
 
 ```bash
-python3 <blackBakcground.py or cameraBackground.py>
+source venv311/bin/activate
+python <blackBakcground.py or cameraBackground.py>
 ```
 
 
